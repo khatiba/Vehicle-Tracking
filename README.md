@@ -13,12 +13,12 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 [image1]: ./examples/car_not_car.png
 [image2]: ./examples/hog.png
-[image3]: ./examples/test1.png
-[image4]: ./examples/test2.png
-[image5]: ./examples/test3.png
-[image6]: ./examples/test4.png
-[image7]: ./examples/test5.png
-[image8]: ./examples/test6.png
+[image3]: ./output_images/test1.png
+[image4]: ./output_images/test2.png
+[image5]: ./output_images/test3.png
+[image6]: ./output_images/test4.png
+[image7]: ./output_images/test5.png
+[image8]: ./output_images/test6.png
 
 [image9]: ./examples/bboxes_and_heat.png
 [image10]: ./examples/labels_map.png
@@ -30,7 +30,7 @@ The goals / steps of this project are the following:
 
 #### 1. Explain how (and identify where in your code) you extracted HOG features from the training images.
 
-The code for this step is contained in the first code cell of the IPython notebook (or in lines # through # of the file called `some_file.py`).  
+The code for this step is contained in the first code cell of the IPython notebook.
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
 
@@ -39,7 +39,7 @@ I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an 
 I then explored different color spaces and different `skimage.hog()` parameters (`orientations`, `pixels_per_cell`, and `cells_per_block`).
 I selected some random images from each of the two classes and displayed them to get a feel for what the `skimage.hog()` output looks like.
 
-Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`:
+Here is an example using the `YCrCb` color space and HOG parameters of `orientations=8`, `pixels_per_cell=(8, 8)` and `cells_per_block=(2, 2)`. `YCrCb` performed the best results with the least false positives.
 
 ![alt text][image2]
 
@@ -65,7 +65,7 @@ I trained a linear SVM by first normalizing the feature vector which composed of
 ### Sliding Window Search
 Searching the images was carried out by first cropping the search area to just the road. Then a HOG feature extraction is taken on the region once per frame. Within the region, HOG features and spatial and color features are extracted, normalized and a prediction is run to see if a car is detected.
 
-In order to improve the accuracy of bounding box, I banded the region with each scale, smaller windows were confined to the top of the region where cars would appear the smallest. The band then increased as the windows move towards the foreground.
+In order to improve the precision of bounding box, I divided up the region from top to bottom, smaller windows were confined to the top of the region where cars would appear the smallest. The window size then increased moving towards the foreground where cars appear larger.
 
 Ultimately I searched on three scales using YCrCb 3-channel HOG features plus spatially binned color and histograms of color in the feature vector, which provided a nice result. I did try using only HOG, HOG + Spatial, HOG + Color combinations but they all produced more false positives than all three combined.
 
@@ -79,7 +79,7 @@ Ultimately I searched on three scales using YCrCb 3-channel HOG features plus sp
 
 Here is the final video impementation including lane line detection.
 
-[final project video](./project_video.mp4)
+[Final Project Video](./project_video.mp4)
 
 
 #### Detection and False Positives
