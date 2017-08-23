@@ -10,10 +10,6 @@ The goals / steps of this project are the following:
 * Use the heatmap to reject outliers and follow detected vehicles.
 * Estimate a bounding box for vehicles detected.
 
-
-[Video Sample](./video-sample.gif)
-
-
 [//]: # (Image References)
 [image1]: ./examples/car_not_car.png
 [image2]: ./examples/hog.png
@@ -23,6 +19,9 @@ The goals / steps of this project are the following:
 [image6]: ./output_images/test4.png
 [image7]: ./output_images/test5.png
 [image8]: ./output_images/test6.png
+[image9]: ./video-sample.gif
+
+![alt text][image9]
 
 
 I started by reading in all the `vehicle` and `non-vehicle` images.  Here is an example of one of each of the `vehicle` and `non-vehicle` classes:
